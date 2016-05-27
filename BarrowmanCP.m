@@ -5,23 +5,30 @@
 %% Barrowman's method to calculate Rocket's CP. 
 classdef BarrowmanCP 
     properties
-        OGIVE_LENGTH = 340*10^(-3);                  % m
-        OGIVE_BASE_DIAMETER = 12.5*10^(-3);          % m
-        d_F = 12.5*10^(-3);                          % Diâmetro da frente da transição (m)
-        d_R = 2*50.80*10^(-3);                 % Diâmetro de trás da transição (m)
-        L_T = 100*10^(-3);                  % Comprimento da transição
-        X_P = 640*10^(-3);                  % Distância da ponta da ogiva até a frente da transição
+        %% Ogive(NOSE)
+        OGIVE_LENGTH = 340*10^(-3);                             % m
+        OGIVE_BASE_DIAMETER = 12.5*10^(-3);                     % m
         
-        R = 50.80*10^(-3);                     % Raio do fim do corpo
-        X_R = 1640*10^(-3) - 270*10^(-3);                   % Distância da ponta superior da aleta à ponta da base que toca o corpo
-        X_B = 85*10^(-3);                  % Distância da ponta da ogiva à ponta superior da aleta que toca a fuselagem
+        %% Transmission
+        F_TRANSMISSION_DIAMETER = 12.5*10^(-3);                 % Diameter at Front of Transmission (m)
+        R_TRANSMITION_DIAMETER = 2*50.80*10^(-3);               % Diameter at Rear of Transmission  (m)
+        TRANSMISSION_LENGHT = 100*10^(-3);                  
+        
+        %% Distances
+        DISTANCE_MID_CHORD = 1640*10^(-3) - 270*10^(-3);        % Distance between fin root leading edge and fin tip leading edge parallel to body
+        DISTANCE_TIP_FIN = 85*10^(-3);                          % Distance from nose Tip to Fin root chord leading edge
+        DISTANCE_TIP_FTRANSMISSION = 640*10^(-3);               % Distance from nose tip to front of Transmission
         
         %% Fins
-        FINS = 4;                                   %Number of fins
-        C_R = 270*10^(-3);                          % Corda da raiz da aleta
-        C_T = 100*10^(-3);                          % Corda da ponta da aleta
-        FIN_LENGTH =  90*10^(-3);                   % Comprimento da aleta
-        L_F = 90*10^(-3);                           % Corda da raiz do meio da aleta
+        FINS = 4;                                               % Number of fins
+        FIN_TIP_CHORD = 270*10^(-3);                            % Fin root chord
+        FIN_ROOT_CHORD = 100*10^(-3);                           % Fin tip chord
+        FIN_LENGTH =  90*10^(-3);                               % Lenght of Fins
+        FIN_MID_CHORD_LENGTH = 90*10^(-3);                      % Length of fin mid-chord line
+        
+         %% Others
+        END_BODY_RADIUS = 50.80*10^(-3);                        % Radius of Body at aft End
+        
     end
     
     methods

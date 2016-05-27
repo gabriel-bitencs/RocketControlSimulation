@@ -2,7 +2,6 @@
 %% 6DoF Simulation
     %Authors: Gabriel Bitencourt de A. Moura, Gustavo Iha R. Moraes
     %Version 1.0.0
-    %Atualizations: 1.Building a class of constants
 
 %% Initially, this class has all the main constants used in the simulator.
 classdef SimulatorConstants
@@ -27,7 +26,7 @@ classdef SimulatorConstants
         ROCKET_DRAG_COEFFICIENT_FRONTAL = 0.45;
         ROCKET_DRAG_COEFFICIENT_LATERAL = 0.45;
         
-        %% ATMOSPHERE
+        %% Atmosphere
         AIR_DENSITY = 1.2922                                    %**** kg/m^3
         WIND_SPEED_X = 0;                                       %**** m/s
         WIND_SPEED_Y = 0;                                       %**** m/s
@@ -38,7 +37,7 @@ classdef SimulatorConstants
         EARTH_MASS = 5.972e24;                                  % kg
         GRAVITATIONAL_CONSTANT = 6.67384e-11;                   % m^3/kg/s^2
         AIR_SPEED = 300;                                        %**** m/s
-        DISTANCE_CP_CG = 463782                                 %**** m
+        DISTANCE_CP_CG = 463782;                                 %**** m
 
     end
 end
