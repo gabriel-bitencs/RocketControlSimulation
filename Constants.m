@@ -6,10 +6,25 @@
 
 classdef Constants
     properties (Constant)
-        AIR_SPEED = 300             %**** m/s
-        ROCKET_MASS = 2000          %**** kg
-        EARTH_RATIO = 6371000;      % m
-        GM = 6.67384e-11;           % m^2/s^2
+        EARTH_RATIO = 6371000;                                 % m
+        EARTH_MASS = 5.972e24;                                 % kg
+        GM = 6.67384e-11;                                      % m^3/kg/s^2
+        
+        PROPELENT_INICIAL_MASS = 3000;                         %**** kg
+        PROPELENT_ BURN = 30000;                               %**** s
+        
+        ROCKET_MASS = 2000;                                    %**** kg
+        ROCKET_THRUST = 3000;                                  %**** kg*m/s^2
+        ROCKET_LATERAL_AREA = 200;                             %**** m?
+        ROCKET_FRONTAL_AREA = 100;                             %**** m?
+        
+        ROCKET_INERCIA_MOMENTz = 33730861.08    * 1000;        %**** kg * m^2
+        ROCKET_INERCIA_MOMENTx = 13826446202.68 * 1000;        %**** kg * m^2
+        ROCKET_INERCIA_MOMENTy = 13826555274.94 * 1000;        %**** kg * m^2
+        
+        AIR_SPEED = 300;                                       %**** m/s
+        
+        DISTANCE_CP_CG = 30;                                   %**** m
     end
 end
 
