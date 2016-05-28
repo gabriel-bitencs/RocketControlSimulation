@@ -35,16 +35,21 @@ classdef BarrowmanCP
     methods(Static)
         function CP = CalculateCP()
             %% Ogive 
-            CP_OGIVE = 2;                                      % Based on the literature
+            OGIVE_CP = 2;                                      % Based on the literature
             OgiveCP_Distance = 0.466*OGIVE_LENGHT;             % Calculates the distance from nose tip to ogive's cp
             
             %% Conical Transition
-            %Transition_cp
-            %TransitionCP_Distance  
+            Transition_cp = 2*((TRANSMITION_DIAMETER_REAR/OGIVE_BASE_DIAMETER)^2 - (TRANSMISSION_DIAMETER_FRONT/OGIVE_BASE_DIAMETER)^2);
+            TransitionCP_Distance = DISTANCE_TIP_TRANSMISSION_FRONT + TRANSMISSION_LENGHT/3*(1 + (1 - (TRANSMISSION_DIAMETER_FRONT/TRANSMISSION_DIAMETER_REAR))/(1 - (TRANSMISSION_DIAMETER_FRONT/(TRANSMISSION_DIAMETER_REAR)^2)));
             
+            %% Fins
+            Fin_cp = 1 + END_BODY_RADIUS/(END_BODY_RADIUS + FIN_LENGTH)*(4*FINS*(FIN_LENGTH/OGIVE_BASE_DIAMETER)^2/(1 + (1 + (2*FIN_MID_CHORD_LENGTH/(FIN_ROOT_CHORD + FIN_TIP_CHORD))^2)^(1/2)));
+            FinCP_Distance = DISTANCE_TIP_FIN + DISTANCE_MID_CHORD/3*(FIN_ROOT_CHORD + 2*FIN_TIP_CHORD)/(FIN_ROOT_CHORD + FIN_TIP_CHORD) + 1/6*(FIN_ROOT_CHORD + 2* FIN_TIP_CHORD - (FIN_ROOT_CHORD*FIN_TIP_CHORD/(FIN_ROOT_CHORD + FIN_TIP_CHORD)));
             
             %% CP Determination
-            CP = OgiveCP_Distance*CP_OGIVE/OgiveCP_Distance;
+            Sum_cp = Transition_cp + OGIVE_CP + Fin_cp;
+            CP = (OgiveCP_Distance*OGIVE_CP + TransitionCP_Distance*Transition_cp + Fin_cp*FinCP_Distance)/Sum_cp;
+            
         end
         
     end
