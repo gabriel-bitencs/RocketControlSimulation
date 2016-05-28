@@ -7,8 +7,8 @@ classdef BarrowmanCP
     
     properties (Constant)
         %% Ogive(NOSE)
-        OGIVE_LENGTH = 340*10^(-3);                             % m
-        OGIVE_BASE_DIAMETER = 12.5*10^(-3);                     % m
+        OGIVE_LENGTH = 340*10^(-3);                             % Lenght of the ogive (m)
+        OGIVE_BASE_DIAMETER = 12.5*10^(-3);                     % Diameter at the base of the ogive (m)
         
         %% Transmission
         TRANSMISSION_DIAMETER_FRONT = 12.5*10^(-3);             % Diameter at Front of Transmission (m)
@@ -40,11 +40,11 @@ classdef BarrowmanCP
             
             %% Conical Transition
             Transition_cp = 2*((TRANSMITION_DIAMETER_REAR/OGIVE_BASE_DIAMETER)^2 - (TRANSMISSION_DIAMETER_FRONT/OGIVE_BASE_DIAMETER)^2);
-            TransitionCP_Distance = DISTANCE_TIP_TRANSMISSION_FRONT + TRANSMISSION_LENGHT/3*(1 + (1 - (TRANSMISSION_DIAMETER_FRONT/TRANSMISSION_DIAMETER_REAR))/(1 - (TRANSMISSION_DIAMETER_FRONT/(TRANSMISSION_DIAMETER_REAR)^2)));
+            TransitionCP_Distance = DISTANCE_TIP_TRANSMISSION_FRONT + TRANSMISSION_LENGHT/3 * (1 + (1 - (TRANSMISSION_DIAMETER_FRONT/TRANSMISSION_DIAMETER_REAR))/(1 - (TRANSMISSION_DIAMETER_FRONT/(TRANSMISSION_DIAMETER_REAR)^2)));
             
             %% Fins
-            Fin_cp = 1 + END_BODY_RADIUS/(END_BODY_RADIUS + FIN_LENGTH)*(4*FINS*(FIN_LENGTH/OGIVE_BASE_DIAMETER)^2/(1 + (1 + (2*FIN_MID_CHORD_LENGTH/(FIN_ROOT_CHORD + FIN_TIP_CHORD))^2)^(1/2)));
-            FinCP_Distance = DISTANCE_TIP_FIN + DISTANCE_MID_CHORD/3*(FIN_ROOT_CHORD + 2*FIN_TIP_CHORD)/(FIN_ROOT_CHORD + FIN_TIP_CHORD) + 1/6*(FIN_ROOT_CHORD + 2* FIN_TIP_CHORD - (FIN_ROOT_CHORD*FIN_TIP_CHORD/(FIN_ROOT_CHORD + FIN_TIP_CHORD)));
+            Fin_cp = (1 + END_BODY_RADIUS/(END_BODY_RADIUS + FIN_LENGTH)) * (4*FINS*(FIN_LENGTH/OGIVE_BASE_DIAMETER)^2/(1 + (1 + (2*FIN_MID_CHORD_LENGTH/(FIN_ROOT_CHORD + FIN_TIP_CHORD))^2)^(1/2)));
+            FinCP_Distance = DISTANCE_TIP_FIN + DISTANCE_MID_CHORD/3*(FIN_ROOT_CHORD + 2*FIN_TIP_CHORD)/(FIN_ROOT_CHORD + FIN_TIP_CHORD) + 1/6*(FIN_ROOT_CHORD + FIN_TIP_CHORD - (FIN_ROOT_CHORD*FIN_TIP_CHORD/(FIN_ROOT_CHORD + FIN_TIP_CHORD)));
             
             %% CP Determination
             Sum_cp = Transition_cp + OGIVE_CP + Fin_cp;
