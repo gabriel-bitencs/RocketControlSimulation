@@ -1,10 +1,11 @@
 %% 6DoF Simulation 
-%Authors: Gabriel Bitencourt de A. Moura, Gustavo Iha R. Moraes
-%Version 1.0.0
+% Authors: Gabriel Bitencourt de A. Moura, Gustavo Iha R. Moraes
+% Version 1.0.0
 
 %% Barrowman's method to calculate Rocket's CP. 
 classdef BarrowmanCP 
-    properties
+    
+    properties (Constant)
         %% Ogive(NOSE)
         OGIVE_LENGTH = 340*10^(-3);                             % m
         OGIVE_BASE_DIAMETER = 12.5*10^(-3);                     % m
@@ -26,16 +27,29 @@ classdef BarrowmanCP
         FIN_LENGTH =  90*10^(-3);                               % Lenght of Fins
         FIN_MID_CHORD_LENGTH = 90*10^(-3);                      % Length of fin mid-chord line
         
-         %% Others
+        %% Others
         END_BODY_RADIUS = 50.80*10^(-3);                        % Radius of Body at aft End
         
-    end
+    end 
     
-    methods
+    methods(Static)
+        function CP = CalculateCP()
+            %% Ogive 
+            CP_OGIVE = 2;                                      % Based on the literature
+            OgiveCP_Distance = 0.466*OGIVE_LENGHT;             % Calculates the distance from nose tip to ogive's cp
+            
+            %% Conical Transition
+            %Transition_cp
+            %TransitionCP_Distance  
+            
+            
+            %% CP Determination
+            CP = OgiveCP_Distance*CP_OGIVE/OgiveCP_Distance;
+        end
+        
     end
-    
 end
 
-%For now, this class has all rocket's datas based on UFABCRocket's
-%Simulator. Then we'll propbably change the values for another one.
+% For now, this class has all rocket's datas based on UFABCRocket's
+% Simulator. Then we'll propbably change the values for another one.
 
