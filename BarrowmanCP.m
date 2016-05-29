@@ -50,8 +50,7 @@ classdef BarrowmanCP
             Sum_cp = Transition_cp + OGIVE_CP + Fin_cp;
             CP = (OgiveCP_Distance*OGIVE_CP + TransitionCP_Distance*Transition_cp + Fin_cp*FinCP_Distance)/Sum_cp;
             
-        end
-        
+        end     
     end
 end
 

@@ -1,7 +1,7 @@
 
 %% 6DoF Simulation
-    %Authors: Gabriel Bitencourt de A. Moura, Gustavo Iha R. Moraes
-    %Version 1.0.0
+    % Authors: Gabriel Bitencourt de A. Moura, Gustavo Iha R. Moraes
+    % Version 1.0.0
 
 %% Initially, this class has all the main constants used in the simulator.
 classdef SimulatorConstants
@@ -16,6 +16,7 @@ classdef SimulatorConstants
         ROCKET_THRUST = 3000;                                   %**** kg*m/s^2
         ROCKET_LATERAL_AREA = 200;                              %**** m^2
         ROCKET_FRONTAL_AREA = 100;                              %**** m^2
+        ROCKET_CG_DISTANCE = 1000*10^(-3);                      % Distance from tip of nose to CG
 
         %% Rocket's Moment of Inercia around the three axes
         ROCKET_INERCIA_MOMENT_Z = 33730861.08    * 1000;        %**** kg * m^2
@@ -28,19 +29,19 @@ classdef SimulatorConstants
         
         %% Atmosphere
         AIR_DENSITY = 1.2922                                    %**** kg/m^3
+        AIR_SPEED = 300;                                        %**** m/s
         WIND_SPEED_X = 0;                                       %**** m/s
         WIND_SPEED_Y = 0;                                       %**** m/s
         WIND_SPEED_Z = 0;                                       %**** m/s
 
-        %% Others
+        %% Earth
         EARTH_RATIO = 6371000;                                  % m
         EARTH_MASS = 5.972e24;                                  % kg
         GRAVITATIONAL_CONSTANT = 6.67384e-11;                   % m^3/kg/s^2
-        AIR_SPEED = 300;                                        %**** m/s
-        DISTANCE_CP_CG = 463782;                                 %**** m
-
+        PAYLOAD_MASS = 300;                                     % kg
+        
     end
 end
 
-        %Caption: ****the values above aren't defined yet. For now, we are
-        %using UFABCRocket's values.
+        % Caption: ****the values above aren't defined yet. For now, we are
+        % using UFABCRocket's values.
