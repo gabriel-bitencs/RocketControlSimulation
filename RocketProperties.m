@@ -3,8 +3,9 @@
 % Version 1.0.0
 
 %% Rocket Incial Conditions
-classdef IntialConditions
-    properties
+classdef RocketProperties
+    
+    properties 
         %% Physical 
         Position = [0,0,0];                      %[x,y,z] m
         LinearVelocity = [0,0,0];                %[u,v,w] m/s
@@ -20,29 +21,28 @@ classdef IntialConditions
     end  
     
     methods (Static)       
-        function Quarternion = CalculateQuaternions()
+        function Quarternion = CalculateQuaternions(obj)
             % Returns the normalized quarternion vector from the initial euler's angles
             
             %% Calculates the quaternions' terms
-            q_0 = cos(Phi/2)*cos(Tetha/2)*cos(Psi/2) - sin(Phi/2)*sin(Theta/2)*sin(Psi/2);
-            q_1 = sin(Theta/2)*sin(Psi/2)*cos(Psi/2) + sin(Psi/2)*cos(Tetha/2)*cos(Phi/2);
-            q_2 = sin(Theta/2)*cos(Psi/2)*cos(Phi/2) - sin(Psi/2)*sin(Psi/2)*cos(Theta/2);
-            q_3 = sin(Phi/2)*cos(Psi/2)*cos(Tetha/2) + sin(Phi/2)*sin(Theta/2)*cos(Psi/2);
+            q_0 = cos(obj.Phi/2)*cos(obj.Theta/2)*cos(obj.Psi/2) - sin(obj.Phi/2)*sin(obj.Theta/2)*sin(obj.Psi/2);
+            q_1 = sin(obj.Theta/2)*sin(obj.Psi/2)*cos(obj.Psi/2) + sin(obj.Psi/2)*cos(obj.Theta/2)*cos(obj.Phi/2);
+            q_2 = sin(obj.Theta/2)*cos(obj.Psi/2)*cos(obj.Phi/2) - sin(obj.Psi/2)*sin(obj.Psi/2)*cos(obj.Theta/2);
+            q_3 = sin(obj.Phi/2)*cos(obj.Psi/2)*cos(obj.Theta/2) + sin(obj.Phi/2)*sin(obj.Theta/2)*cos(obj.Psi/2);
             
             %% Creates the quarternion vector and determinates it's norm
             QuaternionVector = [q_0, q_1, q_2, q_3];
-            QuartenionNorm = norm(QuaternionVector);
+            QuaternionNorm = norm(QuaternionVector);
             
             %% Normalizes the quaternion if it's necessary
-            if(QuarternionNorm ~= 1)
-                QuaternionVector = QuaternionVector/QuartenionNorm;
+            if(QuaternionNorm ~= 1)
+                QuaternionVector = QuaternionVector/QuaternionNorm;
             end
             
             %% Return
             Quarternion = QuaternionVector;
             
-        end
-        
+        end      
     end
     
     methods
