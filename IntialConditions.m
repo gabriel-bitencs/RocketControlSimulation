@@ -47,8 +47,9 @@ classdef IntialConditions
     
     methods
         function TransformMatrix = Calcuate_TransformMatrix(Quaternion)
+             % Generates Transform Matrix from the quaternions' vector
              
-            %% Quanti
+            %% Quantifies terms of Transform Tarix
             a11 = Quaternion(1)^2 + Quaternion(2)^2 - Quaternion(3)^2 - Quaternion(4)^2;
             a12 = 2*(Quaternion(2)*Quaternion(3) - Quaternion(1)*Quaternion(4));
             a13 = 2*(Quaternion(2)*Quaternion(3) + Quaternion(1)*Quaternion(3));
@@ -59,6 +60,7 @@ classdef IntialConditions
             a32 = 2*(Quaternion(3)*Quaternion(4) + Quaternion(1)*Quaternion(2));
             a33 = Quaternion(1)^2 - Quaternion(2)^2 - Quaternion(3)^2 + Quaternion(4)^2;
             
+            %% Building and returning Transform Matrix
             TransformMatrix = [a11 a12 a13; a21 a22 a23; a31 a32 a33];            
         end
     end
