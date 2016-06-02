@@ -10,7 +10,6 @@ classdef RocketIntialConditions
         Rocket_AngularVelocity = [0,0,0];
         Rocket_LinearAcceleration = [0,0,0];
         Rocket_AngularAcceleration = [0,0,0];
-        
     end   
     methods (Static)
         function IntialCondintions = RocketIntialCondintions()
