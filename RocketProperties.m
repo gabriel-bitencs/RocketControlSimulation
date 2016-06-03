@@ -21,10 +21,11 @@ classdef RocketProperties
     end  
     
     methods (Static)       
-        function Quarternion = CalculateQuaternions(obj)
+        function Quarternion = CalculateQuaternions()
             % Returns the normalized quarternion vector from the initial euler's angles
             
             %% Calculates the quaternions' terms
+            obj = RocketProperties; 
             q_0 = cos(obj.Phi/2)*cos(obj.Theta/2)*cos(obj.Psi/2) - sin(obj.Phi/2)*sin(obj.Theta/2)*sin(obj.Psi/2);
             q_1 = sin(obj.Theta/2)*sin(obj.Psi/2)*cos(obj.Psi/2) + sin(obj.Psi/2)*cos(obj.Theta/2)*cos(obj.Phi/2);
             q_2 = sin(obj.Theta/2)*cos(obj.Psi/2)*cos(obj.Phi/2) - sin(obj.Psi/2)*sin(obj.Psi/2)*cos(obj.Theta/2);
@@ -46,7 +47,7 @@ classdef RocketProperties
     end
     
     methods
-        function TransformMatrix = Calcuate_TransformMatrix(Quaternion)
+        function TransformMatrix = Calcuate_TransformMatrix(~, Quaternion)
              % Generates Transform Matrix from the quaternions' vector
              
             %% Quantifies terms of Transform Tarix
@@ -61,7 +62,8 @@ classdef RocketProperties
             a33 = Quaternion(1)^2 - Quaternion(2)^2 - Quaternion(3)^2 + Quaternion(4)^2;
             
             %% Building and returning Transform Matrix
-            TransformMatrix = [a11 a12 a13; a21 a22 a23; a31 a32 a33];            
+            TransformMatrix = [a11 a12 a13; a21 a22 a23; a31 a32 a33];  
+            
         end
     end
 end
