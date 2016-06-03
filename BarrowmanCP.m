@@ -12,7 +12,7 @@ classdef BarrowmanCP
         
         %% Transmission
         TRANSMISSION_DIAMETER_FRONT = 12.5*10^(-3);             % Diameter at Front of Transmission (m)
-        TRANSMITION_DIAMETER_REAR = 2*50.80*10^(-3);            % Diameter at Rear of Transmission  (m)
+        TRANSMISSION_DIAMETER_REAR = 2*50.80*10^(-3);            % Diameter at Rear of Transmission  (m)
         TRANSMISSION_LENGHT = 100*10^(-3);                  
         
         %% Distances
@@ -34,17 +34,19 @@ classdef BarrowmanCP
     
     methods(Static)
         function CP = CalculateCP()
+            import constants.*;
+            
             %% Ogive 
-            OGIVE_CP = 2;                                      % Based on the literature
-            OgiveCP_Distance = 0.466*OGIVE_LENGHT;             % Calculates the distance from nose tip to ogive's cp
+            OGIVE_CP = 2;                                                   % Based on the literature
+            OgiveCP_Distance = 0.466*BarrowmanCP.OGIVE_LENGTH;              % Calculates the distance from nose tip to ogive's cp
             
             %% Conical Transition
-            Transition_cp = 2*((TRANSMITION_DIAMETER_REAR/OGIVE_BASE_DIAMETER)^2 - (TRANSMISSION_DIAMETER_FRONT/OGIVE_BASE_DIAMETER)^2);
-            TransitionCP_Distance = DISTANCE_TIP_TRANSMISSION_FRONT + TRANSMISSION_LENGHT/3 * (1 + (1 - (TRANSMISSION_DIAMETER_FRONT/TRANSMISSION_DIAMETER_REAR))/(1 - (TRANSMISSION_DIAMETER_FRONT/(TRANSMISSION_DIAMETER_REAR)^2)));
+            Transition_cp = 2*((BarrowmanCP.TRANSMISSION_DIAMETER_REAR/BarrowmanCP.OGIVE_BASE_DIAMETER)^2 - (BarrowmanCP.TRANSMISSION_DIAMETER_FRONT/BarrowmanCP.OGIVE_BASE_DIAMETER)^2);
+            TransitionCP_Distance = BarrowmanCP.DISTANCE_TIP_TRANSMISSION_FRONT + BarrowmanCP.TRANSMISSION_LENGHT/3 * (1 + (1 - (BarrowmanCP.TRANSMISSION_DIAMETER_FRONT/BarrowmanCP.TRANSMISSION_DIAMETER_REAR))/(1 - (BarrowmanCP.TRANSMISSION_DIAMETER_FRONT/(BarrowmanCP.TRANSMISSION_DIAMETER_REAR)^2)));
             
             %% Fins
-            Fin_cp = (1 + END_BODY_RADIUS/(END_BODY_RADIUS + FIN_LENGTH)) * (4*FINS*(FIN_LENGTH/OGIVE_BASE_DIAMETER)^2/(1 + (1 + (2*FIN_MID_CHORD_LENGTH/(FIN_ROOT_CHORD + FIN_TIP_CHORD))^2)^(1/2)));
-            FinCP_Distance = DISTANCE_TIP_FIN + DISTANCE_MID_CHORD/3*(FIN_ROOT_CHORD + 2*FIN_TIP_CHORD)/(FIN_ROOT_CHORD + FIN_TIP_CHORD) + 1/6*(FIN_ROOT_CHORD + FIN_TIP_CHORD - (FIN_ROOT_CHORD*FIN_TIP_CHORD/(FIN_ROOT_CHORD + FIN_TIP_CHORD)));
+            Fin_cp = (1 + BarrowmanCP.END_BODY_RADIUS/(BarrowmanCP.END_BODY_RADIUS + BarrowmanCP.FIN_LENGTH)) * (4*BarrowmanCP.FINS*(BarrowmanCP.FIN_LENGTH/BarrowmanCP.OGIVE_BASE_DIAMETER)^2/(1 + (1 + (2*BarrowmanCP.FIN_MID_CHORD_LENGTH/(BarrowmanCP.FIN_ROOT_CHORD + BarrowmanCP.FIN_TIP_CHORD))^2)^(1/2)));
+            FinCP_Distance = BarrowmanCP.DISTANCE_TIP_FIN + BarrowmanCP.DISTANCE_MID_CHORD/3*(BarrowmanCP.FIN_ROOT_CHORD + 2*BarrowmanCP.FIN_TIP_CHORD)/(BarrowmanCP.FIN_ROOT_CHORD + BarrowmanCP.FIN_TIP_CHORD) + 1/6*(BarrowmanCP.FIN_ROOT_CHORD + BarrowmanCP.FIN_TIP_CHORD - (BarrowmanCP.FIN_ROOT_CHORD*BarrowmanCP.FIN_TIP_CHORD/(BarrowmanCP.FIN_ROOT_CHORD + BarrowmanCP.FIN_TIP_CHORD)));
             
             %% CP Determination
             Sum_cp = Transition_cp + OGIVE_CP + Fin_cp;
