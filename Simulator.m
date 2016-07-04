@@ -66,7 +66,16 @@ classdef Simulator < handle
         
         function Run(~)
             
+            Initial = [0;0;0;0;0;0;0;0;0];
+            
+            [t,X] = ode45(@Dynamics, [0 20], Initial);
         end
+        
+        %% Dynamics equations
+        
+        %function eq = Dynamics(t,X)
+        %    eq = obj.Rocket.Dynamics(t,X);
+        %end
         
     end
     
