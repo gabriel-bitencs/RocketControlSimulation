@@ -2,7 +2,7 @@
 % Authors: Gabriel Bitencourt de A. Moura, Gustavo Iha R. Moraes
 % Version 1.0.0
 
-classdef RocketProperties
+classdef RocketProperties < handle
     % An object initialized from this class will contain all the
     % information related with the rocket, such as velocity, acceleration
     % or orientation vectors.
@@ -29,10 +29,10 @@ classdef RocketProperties
         
         %% Returns the normalized Quaternion vector associated with the rocket's euler angles
         
-        function Quarternion = CalculateQuaternions(~)
+        function Quarternion = Quaternion(obj)
             
             % Calculates the quaternions' terms
-            obj = RocketProperties; 
+            %obj = RocketProperties;
             q_0 = cos(obj.Phi/2)*cos(obj.Theta/2)*cos(obj.Psi/2) - sin(obj.Phi/2)*sin(obj.Theta/2)*sin(obj.Psi/2);
             q_1 = sin(obj.Theta/2)*sin(obj.Psi/2)*cos(obj.Psi/2) + sin(obj.Psi/2)*cos(obj.Theta/2)*cos(obj.Phi/2);
             q_2 = sin(obj.Theta/2)*cos(obj.Psi/2)*cos(obj.Phi/2) - sin(obj.Psi/2)*sin(obj.Psi/2)*cos(obj.Theta/2);
@@ -54,10 +54,12 @@ classdef RocketProperties
         end      
     
         %% Returns the transformation matrix from inertial coordinate system to the rocket's.
-    
-        function TransformMatrix = CalculateTransformMatrix(~,Quaternion)
-            % Generates Transform Matrix from the quaternions' vector
-             
+        
+        function TransformMatrix = TransformMatrix(obj)
+            
+            %obj = RocketProperties;
+            Quaternion = obj.Quaternion;
+            
             % Quantifies terms of Transform Matrix
             a11 = Quaternion(1)^2 + Quaternion(2)^2 - Quaternion(3)^2 - Quaternion(4)^2;
             a12 = 2*(Quaternion(2)*Quaternion(3) - Quaternion(1)*Quaternion(4));
