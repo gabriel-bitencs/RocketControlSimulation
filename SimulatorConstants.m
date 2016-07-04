@@ -41,6 +41,16 @@ classdef SimulatorConstants
         PAYLOAD_MASS = 300;                                     % kg
         
     end
+    
+    %% Class Methods
+    
+    methods (Static)
+        
+        function mass = Mass
+            %mass = ROCKET_DRY_MASS + ROCKET_FUEL_MASS;
+            mass = SimulatorConstants.PROPELENT_INICIAL_MASS;
+        end
+    end
 end
 
         % Caption: ****the values above aren't defined yet. For now, we are
